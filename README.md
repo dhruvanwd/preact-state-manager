@@ -27,28 +27,27 @@ Initialize the state manager to manage your application's state effectively.
 #### counter-state-manager.ts
 
 ```javascript
-import { easyStateManager } from "preact-state-manager";
+import { rxStateManager } from 'preact-state-manager';
 
 export const {
-  useStateManager: useCounterState,
-  $state: $counterState,
   updateState: updateCounterState,
-} = easyStateManager({
+  useStateManager: useCounterState,
+} = rxStateManager({
   count: 0,
 });
 
-class CounterActions {
+class CounterAction {
   changeCounter = (newCount) => {
-    updateCounterState((draft) => {
-      draft.count = newCount;
+    updateCounterState((state) => {
+      state.count = newCount;
     });
   };
 }
 
-export const counterAction = new CounterActions();
+export const counterAction = new CounterAction();
 ```
 
-**Key Feature:** When passing a function to the updater, the `draft` argument can be mutated freely. Changes will be made immutable and become the next state once the producer ends.
+**Key Feature:** When passing a function to the updater, the `state` argument can be mutated freely. Changes will be made immutable and become the next state once the producer ends.
 
 ### Using the Hook to Access and Update State
 
@@ -57,11 +56,11 @@ Learn how to use the hook to consume and update state in your Preact components.
 #### App.tsx
 
 ```javascript
-import { h } from "preact";
-import { counterAction, useCounterState } from "./counter-state-manager";
+import { h } from 'preact';
+import { counterAction, useCounterState } from './counter-state-manager';
 
 export function App() {
-  const { count } = useCounterState("count");
+  const { count } = useCounterState('count');
   
   return (
     <div class="card">
@@ -69,7 +68,7 @@ export function App() {
         count is {count}
       </button>
       <p>
-        Edit <code>src/app.tsx</code> and save to test HMR
+        Edit <code>src/App.tsx</code> and save to test HMR
       </p>
     </div>
   );
@@ -81,13 +80,13 @@ export function App() {
 1. **Selective Rerendering:** Use `const { count } = useCounterState('count')` to rerender components only when specific state keys change, improving performance.
 2. **Effortless State Updates:** Simplify state updates with `onClick={() => counterAction.changeCounter(count + 1)}` without the need for dispatchers.
 
-### Accessing Current State with RxJS BehaviorSubject
+### Accessing Current State
 
-`$counterState` is an RxJS `BehaviorSubject`, allowing you to access the current state anywhere in your application:
+`useCounterState` hook allows you to access the current state of the counter:
 
 ```javascript
-const state = $counterState.value; 
-console.log(state.count);
+const { count } = useCounterState('count');
+console.log(count);
 ```
 
 ## Advantages of Using preact-state-manager
