@@ -1,6 +1,6 @@
 {
   "name": "preact-state-manager",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "preact-state-manager",
   "main": "dist/preact-state-manager.js",
   "umd:main": "dist/preact-state-manager.umd.js",
