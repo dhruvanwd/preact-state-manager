@@ -1,18 +1,18 @@
 {
-  "name": "rxdux-state-manager",
-  "version": "1.0.4",
-  "description": "rxdux-state-manager",
-  "main": "dist/rxdux-state-manager.js",
-  "umd:main": "dist/rxdux-state-manager.umd.js",
-  "module": "dist/rxdux-state-manager.module.js",
-  "jsnext:main": "dist/rxdux-state-manager.module.js",
-  "react-native": "dist/rxdux-state-manager.module.js",
+  "name": "preact-state-manager",
+  "version": "0.0.1",
+  "description": "preact-state-manager",
+  "main": "dist/preact-state-manager.js",
+  "umd:main": "dist/preact-state-manager.umd.js",
+  "module": "dist/preact-state-manager.module.js",
+  "jsnext:main": "dist/preact-state-manager.module.js",
+  "react-native": "dist/preact-state-manager.module.js",
   "typings": "dist/index.d.ts",
   "source": "src/index.ts",
   "exports": {
     ".": {
-      "require": "./dist/rxdux-state-manager.js",
-      "import": "./dist/rxdux-state-manager.module.js",
+      "require": "./dist/preact-state-manager.js",
+      "import": "./dist/preact-state-manager.module.js",
       "types": "./dist/index.d.ts"
     }
   },
@@ -23,31 +23,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webdevelopementcenter/rxdux-state-manager.git"
+    "url": "git+https://github.com/dhruvanwd/preact-state-manager.git"
   },
   "files": [
     "dist/"
   ],
   "keywords": [
-    "react",
+    "preact",
     "hooks",
     "state manager",
     "state management",
     "redux",
-    "rxdux"
+    "preact"
   ],
   "author": "Dhruva Verma",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/webdevelopementcenter/rxdux-state-manager.git/issues"
+    "url": "https://github.com/dhruvanwd/preact-state-manager.git/issues"
   },
-  "homepage": "https://github.com/webdevelopementcenter/rxdux-state-manager.git#readme",
+  "homepage": "https://github.com/dhruvanwd/preact-state-manager.git#readme",
   "peerDependencies": {
     "immer": ">=2.0.0",
-    "react": "^16.8.0 || ^17.0.1 || ^18.0.0"
+    "preact": "^10.22.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.56",
     "immer": "^10.0.3",
     "microbundle": "^0.15.1",
     "rimraf": "^4.1.2",

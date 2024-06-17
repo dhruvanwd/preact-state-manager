@@ -1,14 +1,15 @@
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { distinctUntilChanged } from "rxjs/internal/operators/distinctUntilChanged";
-import React from "react";
-import { produce } from "immer";
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
+import { useEffect, useState } from 'preact/hooks'; // Import from preact/hooks
+import { produce } from 'immer';
 
-export function easyStateManager<T>(initalValue: T) {
-  const $state = new BehaviorSubject<T>(initalValue);
+export function rxStateManager<T>(initialValue: T) {
+  const $state = new BehaviorSubject<T>(initialValue);
 
   const useStateManager = (...keys: Array<keyof T>): T => {
-    const [state, setState] = React.useState($state.value);
-    React.useEffect(() => {
+    const [state, setState] = useState<T>($state.value);
+
+    useEffect(() => {
       const subscription = $state
         .pipe(
           distinctUntilChanged((prev, next) => {
@@ -24,13 +25,16 @@ export function easyStateManager<T>(initalValue: T) {
         .subscribe({
           next: setState,
         });
+
       return () => subscription.unsubscribe();
     }, [keys.length]);
-    return state as T;
+
+    return state;
   };
 
   const updateState = (cb: (draft: T) => any) => {
     const updatedClone = produce($state.value, cb);
+    console.log(updatedClone);
     $state.next(updatedClone);
   };
 
